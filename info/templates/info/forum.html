@@ -1,0 +1,124 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Форум</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h2>Клуб знайомств</h2>
+        <nav>
+            <div id="logo">
+                <a href="{% url 'main_page' %}">
+                    <img src="{% static 'img/logo.svg' %}" alt="Логотип сайту для знайомств Amor"/>
+                </a>
+            </div>
+            <div>
+                <a href="{% url 'main_page' %}">Про клуб </a>
+                <div class="pop-menu">
+                    <a href="{% url 'main_page' %}#goals">Цілі</a>
+                    <a href="{% url 'main_page' %}#tasks">Завдання</a>
+                    <a href="{% url 'main_page' %}#locations">Розташування</a>
+                    <a href="{% url 'main_page' %}#social">Контакти</a>
+                </div>
+            </div>
+            <div><a href="{% url 'couples' %}">Сімейні пари</a></div>
+            <div><a href="#">Розваги</a></div>
+            <div class="active"><a href="#">Форум</a></div>
+            <div><a href="{% url 'apply' %}">Подати заявку</a></div>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <h1>Форум</h1>
+            <section>
+                <div class="message">
+                    <p class="text">Привіт усім. Допоможіть вибрати фільм на ніч.</p>
+                    <p class="info"><strong>Наталія Шевченко</strong>&nbsp;в 13:45</p>
+                </div>
+                <div class="message">
+                    <p class="text">Привіт, Наталіє. Які тобі подобаються жанри?</p>
+                    <p class="info"><strong>Вадим Петренко</strong>&nbsp;в 13:45</p>
+                </div>
+                <div class="message">
+                    <p class="text">Я люблю романтику та фантастику.</p>
+                    <p class="info"><strong>Наталія Шевченко</strong>&nbsp;в 13:46</p>
+                </div>
+                <div class="message">
+                    <p class="text">Привіт, Наталіє. Якщо тобі подобаються романтичні фільми, то раджу спробувати дорами, але вони не на один вечір, так як це корейські або китайські серіали.</p>
+                    <p class="info"><strong>Лілія Іщенко</strong>&nbsp;в 13:47</p>
+                </div>
+                <div class="message">
+                    <p class="text">Дякую, Ліліє. Я ще ніколи не дивилася дорам, а які ти б порадила?</p>
+                    <p class="info"><strong>Наталія Шевченко</strong>&nbsp;в 13:47</p>
+                </div>
+                <div class="message">
+                    <p class="text">Наталіє, я б порадив з фантастики класику "Гаррі Поттера" будь-яку частину і, якщо знаєш англійську мову, то краще дивитися в оригіналі.</p>
+                    <p class="info"><strong>Вадим Петренко</strong>&nbsp;в 13:48</p>
+                </div>
+                <div class="message">
+                    <p class="text">Дякую, Вадиме. Це гарна ідея, але "Гаррі Поттера" я передивлялась у минулі вихідні.</p>
+                    <p class="info"><strong>Наталія Шевченко</strong>&nbsp;в 13:49</p>
+                </div>
+                <div class="message">
+                    <p class="text">Я найбільше полюбляю дораму "Сад падаючих зірок" .</p>
+                    <p class="info"><strong>Лілія Іщенко</strong>&nbsp;в 13:50</p>
+                </div>
+                <div class="message">
+                    <p class="text">А про що ця дорама.</p>
+                    <p class="info"><strong>Наталія Шевченко</strong>&nbsp;в 13:50</p>
+                </div>
+                <div class="message">
+                    <p class="text">Сюжет цієї дорами такий: Історія зосереджується навколо юної дівчини, Дон Шань Цай, яка вступає до престижного університету Мін Де. Разом з нею навчається її однокласник Чень Цінхе та знайома зі школи. В університеті Шань Цай зустрічає F4 – групу з чотирьох найпопулярніших старшокурсників – Даомін Сі, Хуадзе Лей, Янь Сі Мен та Фен Мей Цзо. Шань Цай – дівчинка із простої родини: батько працює з інвестиціями, а мати тримає кафе з їжею на виніс. Через своє почуття справедливості Шань Цай у перші дні навчання стикається з F4, особливо її лідером Даомін Сі - зіпсованим, зарозумілим задирою.Вона залишається непереможною навіть після того, як стала мішенню Даомін Сі, і щоразу, коли вона збирається здатися, інший член F4, спокійний і задумливий Хуадзе Лей завжди з'являється, щоб заспокоїти її. Зрештою, чотири хлопчики починають визнавати непохитну особу Шань Цай, яка відповідає своєму імені (бур'ян, який ніколи не може бути збитий). Вона також починає бачити добро у хлопчиках, що відкриває дорогу для дружби та можливого роману.</p>
+                    <p class="info"><strong>Лілія Іщенко</strong>&nbsp;в 13:51</p>
+                </div>
+                <div class="message">
+                    <p class="text">Це справді цікава дорама. А скільки в ній серій?</p>
+                    <p class="info"><strong>Наталія Шевченко</strong>&nbsp;в 13:52</p>
+                </div>
+                <div class="message">
+                    <p class="text">У цій дорамі 49 серій.</p>
+                    <p class="info"><strong>Лілія Іщенко</strong>&nbsp;в 13:52</p>
+                </div>
+                <div class="message">
+                    <p class="text">А скільки хвилин триває одна серія?.</p>
+                    <p class="info"><strong>Наталія Шевченко</strong>&nbsp;в 13:52</p>
+                </div>
+                <div class="message">
+                    <p class="text">Кожна серія по-різному, від 40 до 60 хвилин.</p>
+                    <p class="info"><strong>Лілія Іщенко</strong>&nbsp;в 13:53</p>
+                </div>
+                <div class="message">
+                    <p class="text">На жаль, це забагато. Чи не могла б ти порадити ще якусь?</p>
+                    <p class="info"><strong>Наталія Шевченко</strong>&nbsp;в 13:53</p>
+                </div>
+                <div class="message">
+                    <p class="text">Загалом, дорами усі довгі, але можеш подивитися історичну та фантастичну дораму про кохання "Місячні закохані - Яскраві серця: Коре".</p>
+                    <p class="info"><strong>Лілія Іщенко</strong>&nbsp;в 13:55</p>
+                </div>
+                <div class="message">
+                    <p class="text">А скільки і тут серій й скільки триває одна?.</p>
+                    <p class="info"><strong>Наталія Шевченко</strong>&nbsp;в 13:56</p>
+                </div>
+                <div class="message">
+                    <p class="text">У цій дорамі 20 серій, але тривають по так само 50-60 хвилин.</p>
+                    <p class="info"><strong>Лілія Іщенко</strong>&nbsp;в 13:57</p>
+                </div>
+                <div class="message">
+                    <p class="text">Дякую, тоді як раз буду її дивитись по вихідним.</p>
+                    <p class="info"><strong>Наталія Шевченко</strong>&nbsp;в 13:57</p>
+                </div>
+                <div class="message">
+                    <p class="text">Нема за що.</p>
+                    <p class="info"><strong>Лілія Іщенко</strong>&nbsp;в 13:59</p>
+                </div>
+            </section>
+        </article>
+    </main>
+    <footer>
+        Аліна Швиденко, 2022
+    </footer>
+    <script src= "{% static 'js/forum.js' %}"></script>
+</body>
+</html>

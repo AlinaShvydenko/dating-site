@@ -1,0 +1,255 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Подати заявку</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="overlay" id="clear-overlay">
+        <div class="popup" >
+            <div class="title">
+                <p>Підтвердження</p>
+                <button><img src="{% static 'img/cross.svg' %}" alt=""></button>
+            </div>
+            <div class="content">
+                <p>Очистити всі поля?</p>
+                <div class="buttons">
+                    <button class="answer-no">Ні</button>
+                    <button class="answer-yes">Так</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay" id="sended-overlay">
+        <div class="popup">
+            <div class="title">
+                <p>Повідомлення</p>
+                <button><img src="{% static 'img/cross.svg' %}" alt=""></button>
+            </div>
+            <div class="content">
+                <p>Форма успішно надіслана</p>
+            </div>
+        </div>
+    </div>
+    <header>
+        <h2>Клуб знайомств</h2>
+        <nav>
+            <div id="logo">
+                <a href="{% url 'main_page' %}">
+                    <img src="{% static 'img/logo.svg' %}" alt="Логотип сайту для знайомств Amor"/>
+                </a>
+            </div>
+            <div>
+                <a href="{% url 'main_page' %}">Про клуб </a>
+                <div class="pop-menu">
+                    <a href="{% url 'main_page' %}#goals">Цілі</a>
+                    <a href="{% url 'main_page' %}#tasks">Завдання</a>
+                    <a href="{% url 'main_page' %}#locations">Розташування</a>
+                    <a href="{% url 'main_page' %}#social">Контакти</a>
+                </div>
+            </div>
+            <div><a href="{% url 'couples' %}">Сімейні пари</a></div>
+            <div><a href="#">Розваги</a></div>
+            <div><a href="{% url 'forum' %}">Форум</a></div>
+            <div class="active"><a href="#">Подати заявку</a></div>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <h1>Подати заявку</h1>
+            <section>
+                <form id="apply-form">
+                    <p>* - обов'язкові поля для введення</p>
+                    <div class="block">
+                        <div class="row">
+                            <div class="field">
+                                <label for="surname">Прізвище*</label>
+                                <input type="text" name="surname" id="surname" required>
+                            </div>
+                            <div class="field">
+                                <label for="name">Ім'я*</label>
+                                <input type="text" name="name" id="name" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="field">
+                                <label for="patronymic">По-батькові*</label>
+                                <input type="text" name="patronymic" id="patronymic" required>
+                            </div>
+                            <div class="field">
+                                <label for="birthday">День народження*</label>
+                                <input type="date" name="birthday" id="birthday" min="1871-01-01" max="2004-12-31" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="field">
+                                <label for="gender">Стать*</label>
+                                <select name="gender" id="gender" required>
+                                    <option value="woman">Жіноча</option>
+                                    <option value="man">Чоловіча</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="nationality">Національність</label>
+                                <select name="nationality" id="nationality" required>
+                                    <option value="ukrainian">Українська</option>
+                                    <option value="polish">Польська</option>
+                                    <option value="italian">Італійська</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="block">
+                        <div class="row">
+                            <div class="field">
+                                <label for="country">Країна*</label>
+                                <select name="country" id="country" required>
+                                    <option value="UA">Україна</option>
+                                    <option value="IT">Італія</option>
+                                    <option value="PL">Польща</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="region">Область*</label>
+                                <select name="region" id="region" required>
+                                    <option value="Zaporozhye">Запорізька</option>
+                                    <option value="Kharkov">Харківська</option>
+                                    <option value="Kyiv">Київська</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="city">Місто*</label>
+                                <select name="city" id="city" required>
+                                    <option value="Melitopol">Мелітополь</option>
+                                    <option value="Kharkov">Харків</option>
+                                    <option value="Kyiv">Київ</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="field">
+                                <label for="email">E-mail*</label>
+                                <input type="email" name="email" id="email" required>
+                            </div>
+                            <div class="field">
+                                <label for="phone-number">Номер телефону</label>
+                                <input type="tel" name="phone-number" id="phone-number" pattern="^(\+\d{1,2})?[- ]?\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{2})[- ]?(\d{2})$">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block">
+                        <div class="row">
+                            <div class="field">
+                                <label for="education">Освіта</label>
+                                <select name="education" id="education">
+                                    <option value="higher">Вища</option>
+                                    <option value="average">Середня</option>
+                                    <option value="none">Немає</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="activity-field">Сфера діяльності</label>
+                                <input type="text" name="activity-field" id="activity-field">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="field">
+                                <label for="hobby">Хоббі (через кому)</label>
+                                <textarea name="hobby" id="hobby"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="field">
+                                <label for="pets">Домашні улюбленці</label>
+                                <input type="text" name="pets" id="pets">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block">
+                        <div class="row">
+                            <div class="field">
+                                <label for="favorite-holiday">Улюблене свято</label>
+                                <input type="text" name="favorite-holiday" id="favorite-holiday">
+                            </div>
+                            <div class="field">
+                                <label for="favorite-color">Улюблений колір</label>
+                                <input type="text" name="favorite-color" id="favorite-color">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="field">
+                                <label for="favorite-dish">Улюблена страва</label>
+                                <input type="text" name="favorite-dish" id="favorite-dish">
+                            </div>
+                            <div class="field">
+                                <label for="favorite-drink">Улюблений напій</label>
+                                <input type="text" name="favorite-drink" id="favorite-drink">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="field">
+                                <label for="favorite-musician">Улюблений музикант</label>
+                                <input type="text" name="favorite-musician" id="favorite-musician">
+                            </div>
+                            <div class="field">
+                                <label for="favorite-actor">Улюблений актор</label>
+                                <input type="text" name="favorite-actor" id="favorite-actor">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="field">
+                                <label for="favorite-book">Улюблена книга</label>
+                                <input type="text" name="favorite-book" id="favorite-book">
+                            </div>
+                            <div class="field">
+                                <label for="favorite-movie">Улюблений фільм</label>
+                                <input type="text" name="favorite-movie" id="favorite-movie">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block">
+                        <div class="row">
+                            <div class="field">
+                                <label for="appreciate-in-people">Що ви цінуєте у людях?</label>
+                                <textarea name="appreciate-in-people" id="appreciate-in-people"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="field">
+                                <label for="repulsive-in-people">Що вас відштовхує у людях?</label>
+                                <textarea name="repulsive-in-people" id="repulsive-in-people"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block">
+                        <div class="row">
+                            <input type="submit" value="Подати заявку" id="apply"></input>
+                            <input type="button" value="Очистити" id="clear"></input>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </article>
+    </main>
+    <footer>
+        Аліна Швиденко, 2022
+    </footer>
+    <script src= "{% static 'js/apply.js' %}"></script>
+</body>
+</html>
