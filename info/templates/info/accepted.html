@@ -1,0 +1,62 @@
+{% load static %}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Повідомлення</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+    /* CSS для футера */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex-grow: 1;
+        }
+
+        footer {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Клуб знайомств</h2>
+        <nav>
+            <div id="logo">
+                <a href="{% url 'main_page' %}">
+                    <img src="{% static 'img/logo.svg' %}" alt="Логотип сайту для знайомств Amor"/>
+                </a>
+            </div>
+            <div>
+                <a href="{% url 'main_page' %}">Про клуб </a>
+                <div class="pop-menu">
+                    <a href="{% url 'main_page' %}#goals">Цілі</a>
+                    <a href="{% url 'main_page' %}#tasks">Завдання</a>
+                    <a href="{% url 'main_page' %}#locations">Розташування</a>
+                    <a href="{% url 'main_page' %}#social">Контакти</a>
+                </div>
+            </div>
+            <div><a href="{% url 'couples' %}">Сімейні пари</a></div>
+            <div><a href="#">Розваги</a></div>
+            <div><a href="{% url 'forum' %}">Форум</a></div>
+            <div><a href="{% url 'apply' %}">Подати заявку</a></div>
+            <div><a href="{% url 'applications_display' %}">Усі заявки</a></div>
+        </nav>
+    </header>
+    <main>
+        <h1>Ваші данні прийняті та обробляються</h1>
+    </main>
+    <footer>
+        Аліна Швиденко, 2022
+    </footer>
+</body>
+</html>

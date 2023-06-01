@@ -1,5 +1,6 @@
 {% load static %}
 
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Про клуб</title>
@@ -27,9 +28,10 @@
             <div><a href="#">Розваги</a></div>
             <div><a href="{% url 'forum' %}">Форум</a></div>
             <div><a href="{% url 'apply' %}">Подати заявку</a></div>
+            <div><a href="{% url 'applications_display' %}">Усі заявки</a></div>
         </nav>
     </header>
-    {% if color == '' %} <main> {% else %} <main style = "background-color:{{ color }}">{% endif %}
+    <main style="{% if color != '' %}background-color:{{ color }}{% endif %}">
         <article>
             <h1>Привіт, {{ name }}. Це сторінка "Про клуб"</h1>
             <section>

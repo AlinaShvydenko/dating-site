@@ -1,0 +1,128 @@
+{% load static %}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Подані заявки</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        /* CSS для таблицы */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+        }
+
+
+        /* CSS для футера */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex-grow: 1;
+        }
+
+        footer {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Клуб знайомств</h2>
+        <nav>
+            <div id="logo">
+                <a href="{% url 'main_page' %}">
+                    <img src="{% static 'img/logo.svg' %}" alt="Логотип сайту для знайомств Amor"/>
+                </a>
+            </div>
+            <div>
+                <a href="{% url 'main_page' %}">Про клуб </a>
+                <div class="pop-menu">
+                    <a href="{% url 'main_page' %}#goals">Цілі</a>
+                    <a href="{% url 'main_page' %}#tasks">Завдання</a>
+                    <a href="{% url 'main_page' %}#locations">Розташування</a>
+                    <a href="{% url 'main_page' %}#social">Контакти</a>
+                </div>
+            </div>
+            <div><a href="{% url 'couples' %}">Сімейні пари</a></div>
+            <div><a href="#">Розваги</a></div>
+            <div><a href="{% url 'forum' %}">Форум</a></div>
+            <div><a href="{% url 'apply' %}">Подати заявку</a></div>
+            <div class="active"><a href="#">Усі заявки</a></div>
+        </nav>
+    </header>
+    <main>
+        <h1>Створені анкети:</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Статус заявки</th>
+                    <th>Прізвище</th>
+                    <th>Ім'я</th>
+                    <th>По-батькові</th>
+                    <th>День народження</th>
+                    <th>Стать</th>
+                    <th>Область</th>
+                    <th>Населений пункт</th>
+                    <th>Електронна пошта</th>
+                    <th>Освіта</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cm in club_members %}
+                <tr>
+                    <td>{% if cm.is_accepted %}Прийнятий{% else %}В очікуванні{% endif %}</td>
+                    <td>{{ cm.user.last_name }}</td>
+                    <td>{{ cm.user.first_name }}</td>
+                    <td>{{ cm.patronymic }}</td>
+                    <td>{{ cm.birthday }}</td>
+                    <td>
+                        {% if cm.gender == "woman" %}
+                            Жінка
+                        {% else %}
+                            Чоловік
+                        {% endif %}
+                    </td>
+                    <td>{{ cm.settlement.region }}</td>
+                    <td>{{ cm.settlement }}</td>
+                    <td>{{ cm.user.email }}</td>
+                    <td>
+                        {% if cm.education == "higher" %}
+                            Вища
+                        {% elif cm.education == "average" %}
+                            Середня
+                        {% else %}
+                            Немає
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        Аліна Швиденко, 2022
+    </footer>
+
+</body>
+</html>

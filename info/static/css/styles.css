@@ -138,6 +138,8 @@ header {
     scroll-margin-top: 140px;
 }
 
+
+
 header>h2 {
     color: white;
     padding: 10px 0px;
@@ -448,6 +450,7 @@ section {
 #apply {
     background-color: #FC1FB1;
 }
+
 #clear {
     background-color:#1F77FC;
 }

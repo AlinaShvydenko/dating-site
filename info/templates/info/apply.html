@@ -1,9 +1,13 @@
 {% load static %}
 
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Подати заявку</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+    #apply {background-color: #1F77FC;}
+    </style>
 </head>
 <body>
     <div class="overlay" id="clear-overlay">
@@ -53,23 +57,24 @@
             <div><a href="#">Розваги</a></div>
             <div><a href="{% url 'forum' %}">Форум</a></div>
             <div class="active"><a href="#">Подати заявку</a></div>
+            <div><a href="{% url 'applications_display' %}">Усі заявки</a></div>
         </nav>
     </header>
     <main>
         <article>
             <h1>Подати заявку</h1>
             <section>
-                <form id="apply-form">
+                <form method="POST" action="{% url 'create_club_member' %}" id="apply-form">
                     <p>* - обов'язкові поля для введення</p>
                     <div class="block">
                         <div class="row">
                             <div class="field">
-                                <label for="surname">Прізвище*</label>
-                                <input type="text" name="surname" id="surname" required>
+                                <label for="last_name">Прізвище*</label>
+                                <input type="text" name="last_name" id="last_name" required>
                             </div>
                             <div class="field">
-                                <label for="name">Ім'я*</label>
-                                <input type="text" name="name" id="name" required>
+                                <label for="first_name">Ім'я*</label>
+                                <input type="text" name="first_name" id="first_name" required>
                             </div>
                         </div>
 
@@ -94,7 +99,7 @@
                             </div>
                             <div class="field">
                                 <label for="nationality">Національність</label>
-                                <select name="nationality" id="nationality" required>
+                                <select name="nationality" id="nationality" >
                                     <option value="ukrainian">Українська</option>
                                     <option value="polish">Польська</option>
                                     <option value="italian">Італійська</option>
@@ -107,27 +112,19 @@
                     <div class="block">
                         <div class="row">
                             <div class="field">
-                                <label for="country">Країна*</label>
-                                <select name="country" id="country" required>
-                                    <option value="UA">Україна</option>
-                                    <option value="IT">Італія</option>
-                                    <option value="PL">Польща</option>
-                                </select>
-                            </div>
-                            <div class="field">
                                 <label for="region">Область*</label>
                                 <select name="region" id="region" required>
-                                    <option value="Zaporozhye">Запорізька</option>
-                                    <option value="Kharkov">Харківська</option>
-                                    <option value="Kyiv">Київська</option>
+                                     {% for region in regions %}
+                                        <option value="{{ region.id }}">{{ region.title }}</option>
+                                     {% endfor %}
                                 </select>
                             </div>
                             <div class="field">
-                                <label for="city">Місто*</label>
-                                <select name="city" id="city" required>
-                                    <option value="Melitopol">Мелітополь</option>
-                                    <option value="Kharkov">Харків</option>
-                                    <option value="Kyiv">Київ</option>
+                                <label for="settlement">Місто*</label>
+                                <select name="settlement" id="settlement" required>
+                                    {% for settlement in settlements %}
+                                        <option value="{{ settlement.id }}">{{ settlement.title }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
@@ -138,8 +135,8 @@
                                 <input type="email" name="email" id="email" required>
                             </div>
                             <div class="field">
-                                <label for="phone-number">Номер телефону</label>
-                                <input type="tel" name="phone-number" id="phone-number" pattern="^(\+\d{1,2})?[- ]?\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{2})[- ]?(\d{2})$">
+                                <label for="phone_number">Номер телефону</label>
+                                <input type="tel" name="phone_number" id="phone_number" pattern="^(\+\d{1,2})?[- ]?\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{2})[- ]?(\d{2})$">
                             </div>
                         </div>
                     </div>
@@ -155,8 +152,8 @@
                                 </select>
                             </div>
                             <div class="field">
-                                <label for="activity-field">Сфера діяльності</label>
-                                <input type="text" name="activity-field" id="activity-field">
+                                <label for="activity_field">Сфера діяльності</label>
+                                <input type="text" name="activity_field" id="activity_field">
                             </div>
                         </div>
 
@@ -178,69 +175,69 @@
                     <div class="block">
                         <div class="row">
                             <div class="field">
-                                <label for="favorite-holiday">Улюблене свято</label>
-                                <input type="text" name="favorite-holiday" id="favorite-holiday">
+                                <label for="favorite_holiday">Улюблене свято</label>
+                                <input type="text" name="favorite_holiday" id="favorite_holiday">
                             </div>
                             <div class="field">
-                                <label for="favorite-color">Улюблений колір</label>
-                                <input type="text" name="favorite-color" id="favorite-color">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="field">
-                                <label for="favorite-dish">Улюблена страва</label>
-                                <input type="text" name="favorite-dish" id="favorite-dish">
-                            </div>
-                            <div class="field">
-                                <label for="favorite-drink">Улюблений напій</label>
-                                <input type="text" name="favorite-drink" id="favorite-drink">
+                                <label for="favorite_color">Улюблений колір</label>
+                                <input type="text" name="favorite_color" id="favorite_color">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="field">
-                                <label for="favorite-musician">Улюблений музикант</label>
-                                <input type="text" name="favorite-musician" id="favorite-musician">
+                                <label for="favorite_dish">Улюблена страва</label>
+                                <input type="text" name="favorite_dish" id="favorite_dish">
                             </div>
                             <div class="field">
-                                <label for="favorite-actor">Улюблений актор</label>
-                                <input type="text" name="favorite-actor" id="favorite-actor">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="field">
-                                <label for="favorite-book">Улюблена книга</label>
-                                <input type="text" name="favorite-book" id="favorite-book">
-                            </div>
-                            <div class="field">
-                                <label for="favorite-movie">Улюблений фільм</label>
-                                <input type="text" name="favorite-movie" id="favorite-movie">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="block">
-                        <div class="row">
-                            <div class="field">
-                                <label for="appreciate-in-people">Що ви цінуєте у людях?</label>
-                                <textarea name="appreciate-in-people" id="appreciate-in-people"></textarea>
+                                <label for="favorite_drink">Улюблений напій</label>
+                                <input type="text" name="favorite_drink" id="favorite_drink">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="field">
-                                <label for="repulsive-in-people">Що вас відштовхує у людях?</label>
-                                <textarea name="repulsive-in-people" id="repulsive-in-people"></textarea>
+                                <label for="favorite_musician">Улюблений музикант</label>
+                                <input type="text" name="favorite_musician" id="favorite_musician">
+                            </div>
+                            <div class="field">
+                                <label for="favorite_actor">Улюблений актор</label>
+                                <input type="text" name="favorite_actor" id="favorite_actor">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="field">
+                                <label for="favorite_book">Улюблена книга</label>
+                                <input type="text" name="favorite_book" id="favorite_book">
+                            </div>
+                            <div class="field">
+                                <label for="favorite_movie">Улюблений фільм</label>
+                                <input type="text" name="favorite_movie" id="favorite_movie">
                             </div>
                         </div>
                     </div>
 
                     <div class="block">
                         <div class="row">
-                            <input type="submit" value="Подати заявку" id="apply"></input>
-                            <input type="button" value="Очистити" id="clear"></input>
+                            <div class="field">
+                                <label for="appreciate_in_people">Що ви цінуєте у людях?</label>
+                                <textarea name="appreciate_in_people" id="appreciate_in_people"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="field">
+                                <label for="repulsive_in_people">Що вас відштовхує у людях?</label>
+                                <textarea name="repulsive_in_people" id="repulsive_in_people"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block">
+                        <div class="row">
+                            <input type="submit" value="Подати заявку" id="apply">
+
                         </div>
                     </div>
                 </form>
@@ -250,6 +247,6 @@
     <footer>
         Аліна Швиденко, 2022
     </footer>
-    <script src= "{% static 'js/apply.js' %}"></script>
+
 </body>
 </html>
