@@ -1,0 +1,136 @@
+{% load static %}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Вхід</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        /* CSS для футера */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Доданий стиль для заборони прокрутки сторінки */
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 40px);
+            background-color: #FFBAEC;
+        }
+
+        footer {
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        form {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            margin-bottom: 200px;
+        }
+
+        form h2 {
+            text-align: center;
+            font-size: 24px;
+        }
+
+        form div {
+            margin-bottom: 10px;
+        }
+
+        form label {
+            display: block;
+            font-size: 16px;
+        }
+
+        form input[type="text"],
+        form input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        form button[type="submit"] {
+            background-color: #1F77FC;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Клуб знайомств</h2>
+        <nav>
+            <div id="logo">
+                <a href="{% url 'main_page' %}">
+                    <img src="{% static 'img/logo.svg' %}" alt="Логотип сайту для знайомств Amor"/>
+                </a>
+            </div>
+            <div>
+                <a href="{% url 'main_page' %}">Про клуб </a>
+                <div class="pop-menu">
+                    <a href="{% url 'main_page' %}#goals">Цілі</a>
+                    <a href="{% url 'main_page' %}#tasks">Завдання</a>
+                    <a href="{% url 'main_page' %}#locations">Розташування</a>
+                    <a href="{% url 'main_page' %}#social">Контакти</a>
+                </div>
+            </div>
+            <div><a href="{% url 'couples' %}">Сімейні пари</a></div>
+            <div><a href="#">Розваги</a></div>
+            <div class="active"><a href="#">Форум</a></div>
+            <div><a href="{% url 'apply' %}">Подати заявку</a></div>
+            <div><a href="{% url 'applications_display' %}">Усі заявки</a></div>
+        </nav>
+    </header>
+   <main>
+        <form method="post">
+            {% csrf_token %}
+            <h2>Вхід</h2>
+            <div>
+                <label for="{{ form.username.id_for_label }}">Логін:</label>
+                {{ form.username }}
+            </div>
+            <div>
+                <label for="{{ form.password.id_for_label }}">Пароль:</label>
+                {{ form.password }}
+            </div>
+            <input type="hidden" name="next" value="{{ next }}">
+            <button type="submit">Увійти</button>
+        </form>
+    </main>
+
+
+
+    <footer>
+        Аліна Швиденко, 2022
+    </footer>
+</body>
+</html>
+
+
+

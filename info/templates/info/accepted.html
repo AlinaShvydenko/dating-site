@@ -25,6 +25,19 @@
             padding: 10px;
             text-align: center;
         }
+
+        .password-box {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .password {
+            font-size: 24px;
+            color: #333333;
+        }
     </style>
 </head>
 <body>
@@ -53,7 +66,12 @@
         </nav>
     </header>
     <main>
-        <h1>Ваші данні прийняті та обробляються</h1>
+        <br>
+        <h1>Ваші данні прийняті та обробляються!</h1>
+        <br>
+        <div class="password-box">
+        <h2 class="password">Вам було присвоєно пароль: {{ password }}</h2>
+        </div>
     </main>
     <footer>
         Аліна Швиденко, 2022

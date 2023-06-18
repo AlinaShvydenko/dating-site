@@ -1,7 +1,10 @@
+
 from django.shortcuts import render
 from .models import ClubMember, Region, Settlement
 from django.contrib.auth.models import User
-import re
+import random, string
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.decorators import login_required
 
 def main_page(request, name="Аліно", color=""):
     return render(request, 'info/main_page.html', {'name': name, 'color': color})
@@ -9,6 +12,7 @@ def main_page(request, name="Аліно", color=""):
 def couples(request):
     return render(request, 'info/couples.html')
 
+@login_required(login_url='/accounts/login/')
 def forum(request):
     return render(request, 'info/forum.html')
 
@@ -60,7 +64,7 @@ def create_club_member(request):
         appreciate_in_people = request.POST["appreciate_in_people"]
         repulsive_in_people = request.POST["repulsive_in_people"]
 
-        user = User(username=email, first_name=first_name, last_name=last_name, email=email)
+        user = User(username=email, password=make_password(generate_password(8)), first_name=first_name, last_name=last_name, email=email)
         user.save()
 
         club_member = ClubMember(user=user, patronymic=patronymic, birthday=birthday, gender=gender,
@@ -85,5 +89,14 @@ def create_club_member(request):
             else:
                 setattr(club_member, field_name, None)'''
 
-        return render(request, 'info/accepted.html',  {'club_members':club_members})
+        return render(request, 'info/accepted.html',  {'club_members':club_members, 'password': generate_password(8)})
+
+def generate_password(length):
+    characters = string.ascii_letters + string.digits
+    password = ''.join(random.choice(characters) for _ in range(length))
+    return password
+
+
+
+
 

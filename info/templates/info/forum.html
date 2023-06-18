@@ -29,6 +29,9 @@
             <div class="active"><a href="#">Форум</a></div>
             <div><a href="{% url 'apply' %}">Подати заявку</a></div>
             <div><a href="{% url 'applications_display' %}">Усі заявки</a></div>
+            {% if user.is_authenticated %}
+                <div><a href="{% url 'logout' %}">Вийти</a></div>
+            {% endif %}
         </nav>
     </header>
     <main>

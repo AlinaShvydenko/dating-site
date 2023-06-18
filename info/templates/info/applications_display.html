@@ -68,10 +68,15 @@
             <div><a href="{% url 'forum' %}">Форум</a></div>
             <div><a href="{% url 'apply' %}">Подати заявку</a></div>
             <div class="active"><a href="#">Усі заявки</a></div>
+            {% if user.is_authenticated %}
+                <div><a href="{% url 'logout' %}">Вийти</a></div>
+            {% endif %}
         </nav>
     </header>
     <main>
+        <br>
         <h1>Створені анкети:</h1>
+        <br>
         <table class="table">
             <thead>
                 <tr>
