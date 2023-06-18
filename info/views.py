@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 import random, string
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 def main_page(request, name="Аліно", color=""):
     return render(request, 'info/main_page.html', {'name': name, 'color': color})
@@ -24,9 +25,16 @@ def applications_display(request):
 def accepted(request):
     return render(request, 'info/accepted.html')
 def apply(request):
-    regions = Region.objects.all()
-    settlements = Settlement.objects.all()
+    regions = Region.objects.order_by('title').all()
+    settlements = []
     return render(request, 'info/apply.html', {'regions': regions, 'settlements': settlements})
+
+
+def get_settlements(request):
+    region_id = request.GET.get('region_id')
+    settlements = Settlement.objects.filter(region__id=region_id).order_by('title').values('id', 'title')
+    return JsonResponse(list(settlements), safe=False)
+
 
 def create_club_member(request):
     if request.method == 'GET':
@@ -68,7 +76,8 @@ def create_club_member(request):
         user.save()
 
         club_member = ClubMember(user=user, patronymic=patronymic, birthday=birthday, gender=gender,
-                                 nationality=nationality, settlement=settlement, phone_number=phone_number,
+                                 nationality=nationality, region=region, settlement=settlement,
+                                 phone_number=phone_number,
                                  education=education, activity_field=activity_field, hobby=hobby, pets=pets,
                                  favorite_holiday=favorite_holiday, favorite_color=favorite_color,
                                  favorite_dish=favorite_dish,
@@ -78,16 +87,6 @@ def create_club_member(request):
                                  appreciate_in_people=appreciate_in_people, repulsive_in_people=repulsive_in_people)
         club_member.save()
         club_members = ClubMember.objects.order_by('id')
-        '''optional_fields = ['activity_field', 'hobby', 'pets', 'favorite_holiday', 'favorite_color', 'favorite_dish',
-                           'favorite_drink', 'favorite_musician', 'favorite_actor', 'favorite_book', 'favorite_movie',
-                           'appreciate_in_people', 'repulsive_in_people']
-
-        for field_name in optional_fields:
-            field_value = request.POST.get(field_name)
-            if field_value:
-                setattr(club_member, field_name, field_value)
-            else:
-                setattr(club_member, field_name, None)'''
 
         return render(request, 'info/accepted.html',  {'club_members':club_members, 'password': generate_password(8)})
 

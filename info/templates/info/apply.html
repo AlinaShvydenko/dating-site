@@ -123,7 +123,7 @@
                                 </select>
                             </div>
                             <div class="field">
-                                <label for="settlement">Місто*</label>
+                                <label for="settlement">Населений пункт*</label>
                                 <select name="settlement" id="settlement" required>
                                     {% for settlement in settlements %}
                                         <option value="{{ settlement.id }}">{{ settlement.title }}</option>
@@ -182,7 +182,7 @@
                                 <input type="text" name="favorite_holiday" id="favorite_holiday">
                             </div>
                             <div class="field">
-                                <label for="favorite_color">Улюблений колір</label>
+                                <label fo0r="favorite_color">Улюблений колір</label>
                                 <input type="text" name="favorite_color" id="favorite_color">
                             </div>
                         </div>
@@ -250,6 +250,44 @@
     <footer>
         Аліна Швиденко, 2022
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var regionSelect = document.getElementById('region');
+            var settlementSelect = document.getElementById('settlement');
+
+            regionSelect.addEventListener('change', function() {
+                var regionId = regionSelect.value;
+
+                // Очищаем список городов
+                while (settlementSelect.options.length > 0) {
+                    settlementSelect.remove(0);
+                }
+
+                // Отправляем запрос на сервер для получения списка городов
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', '/info/get_settlements/?region_id=' + regionId, true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        var settlements = JSON.parse(xhr.responseText);
+
+                        // Добавляем полученные города в список
+                        for (var i = 0; i < settlements.length; i++) {
+                            var option = document.createElement('option');
+                            option.value = settlements[i].id;
+                            option.text = settlements[i].title;
+                            settlementSelect.appendChild(option);
+                        }
+                    }
+                };
+                xhr.send();
+            });
+
+            // Вызываем событие 'change' для инициализации списка городов при загрузке страницы
+            regionSelect.dispatchEvent(new Event('change'));
+        });
+    </script>
+
 
 </body>
 </html>
