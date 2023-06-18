@@ -1,4 +1,4 @@
-
+from django.db.models import Q
 from django.shortcuts import render
 from .models import ClubMember, Region, Settlement
 from django.contrib.auth.models import User
@@ -30,6 +30,28 @@ def apply(request):
     return render(request, 'info/apply.html', {'regions': regions, 'settlements': settlements})
 
 
+def search(request):
+    query = request.GET.get('query')
+
+    search_results = ClubMember.objects.filter(
+        Q(user__last_name__icontains=query) | Q(user__first_name__icontains=query))
+
+    results = []
+    for cm in search_results:
+        results.append({
+            'is_accepted': cm.is_accepted,
+            'last_name': cm.user.last_name,
+            'first_name': cm.user.first_name,
+            'patronymic': cm.patronymic,
+            'birthday': cm.birthday,
+            'gender': cm.gender,
+            'region': cm.settlement.region,
+            'settlement': cm.settlement,
+            'email': cm.user.email,
+            'education': cm.education,
+        })
+
+    return JsonResponse(results, safe=False)
 def get_settlements(request):
     region_id = request.GET.get('region_id')
     settlements = Settlement.objects.filter(region__id=region_id).order_by('title').values('id', 'title')
@@ -76,7 +98,7 @@ def create_club_member(request):
         user.save()
 
         club_member = ClubMember(user=user, patronymic=patronymic, birthday=birthday, gender=gender,
-                                 nationality=nationality, region=region, settlement=settlement,
+                                 nationality=nationality, settlement=settlement,
                                  phone_number=phone_number,
                                  education=education, activity_field=activity_field, hobby=hobby, pets=pets,
                                  favorite_holiday=favorite_holiday, favorite_color=favorite_color,

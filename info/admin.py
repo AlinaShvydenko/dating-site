@@ -42,13 +42,13 @@ class ClubMemberAdmin(admin.ModelAdmin):
         return obj.settlement.region
 
     get_region.short_description = 'region'
-    def save_model(self, request, obj, form, change):
+    '''def save_model(self, request, obj, form, change):
         if not change:  # Создание нового объекта
             obj.user.first_name = obj.user.first_name
             obj.user.last_name = obj.user.last_name
             obj.user.email = obj.user.email
             obj.user.save()
-        obj.save()
+        obj.save()'''
 
 class MarriedCoupleAdmin(admin.ModelAdmin):
     list_display = ('id', 'get_husband_full_name', 'get_wife_full_name', 'date_marriage')
