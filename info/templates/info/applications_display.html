@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div><a href="{% url 'couples' %}">Сімейні пари</a></div>
-            <div><a href="#">Розваги</a></div>
+<!--            <div><a href="#">Розваги</a></div>-->
             <div><a href="{% url 'forum' %}">Форум</a></div>
             <div><a href="{% url 'apply' %}">Подати заявку</a></div>
             <div class="active"><a href="#">Усі заявки</a></div>
@@ -77,8 +77,7 @@
         <br>
         <h1>Створені анкети:</h1>
         <br>
-        <input type="text" id="search-input" placeholder="Пошук...">
-        <button id="search-button">Знайти</button>
+
         <table class="table">
             <thead>
                 <tr>
@@ -128,38 +127,10 @@
     </main>
 
     <footer>
-        Аліна Швиденко, 2022
+        <a href="{% url 'sitemap' %}">Мапа сайту</a>
+        <p>Аліна Швиденко, 2022</p>
     </footer>
-    <script>
-        document.getElementById('search-button').addEventListener('click', function() {
-            var searchInput = document.getElementById('search-input').value;
 
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/search/?query=' + searchInput, true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var searchResults = JSON.parse(xhr.responseText);
-
-                    var tableBody = document.getElementById('table-body');
-                    tableBody.innerHTML = ''; // Очистить предыдущие результаты
-
-                    for (var i = 0; i < searchResults.length; i++) {
-                        var cm = searchResults[i];
-                        var row = document.createElement('tr');
-
-                        var statusCell = document.createElement('td');
-                        statusCell.textContent = cm.is_accepted ? 'Прийнятий' : 'В очікуванні';
-                        row.appendChild(statusCell);
-
-                        // Добавьте код для остальных ячеек таблицы
-
-                        tableBody.appendChild(row);
-                    }
-                }
-            };
-            xhr.send();
-        });
-    </script>
 
 </body>
 </html>

@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div><a href="{% url 'couples' %}">Сімейні пари</a></div>
-            <div><a href="#">Розваги</a></div>
+<!--            <div><a href="#">Розваги</a></div>-->
             <div class="active"><a href="#">Форум</a></div>
             <div><a href="{% url 'apply' %}">Подати заявку</a></div>
             <div><a href="{% url 'applications_display' %}">Усі заявки</a></div>
@@ -122,7 +122,8 @@
         </article>
     </main>
     <footer>
-        Аліна Швиденко, 2022
+        <a href="{% url 'sitemap' %}">Мапа сайту</a>
+        <p>Аліна Швиденко, 2022</p>
     </footer>
     <script src= "{% static 'js/forum.js' %}"></script>
 </body>

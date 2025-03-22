@@ -10,5 +10,5 @@ urlpatterns = [
  path('applications_display/', views.applications_display, name='applications_display'),
  path('accepted/', views.create_club_member, name='create_club_member'),
  path('get_settlements/', views.get_settlements, name='get_settlements'),
- path('search/', views.search, name='search'),
+ path('sitemap/', views.sitemap, name='sitemap'),
 ]

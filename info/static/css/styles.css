@@ -269,6 +269,8 @@ article {
     background: #FFFFFF;
     border-radius: 0px 0px 10px 10px;
     max-width: 880px;
+    min-width: 500px;
+    min-height: 507;
 }
 
 section {
@@ -458,6 +460,16 @@ section {
 footer {
     background-color: #B4167E;
     color: white;
-    text-align: center;
+    display: flex;
     padding: 10px 0px;
+    flex-direction: column;
+}
+
+footer > p {
+    text-align: center;
+}
+
+footer > a {
+    text-align: center;
+    color: white;
 }

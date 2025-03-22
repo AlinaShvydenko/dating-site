@@ -1,0 +1,20 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>http://127.0.0.1:8000/info/</loc>
+    </url>
+    <url>
+        <loc>http://127.0.0.1:8000/info/couples/</loc>
+    </url>
+    <url>
+        <loc>http://127.0.0.1:8000/info/forum/</loc>
+    </url>
+    <url>
+        <loc>http://127.0.0.1:8000/info/apply/</loc>
+    </url>
+    <url>
+        <loc>http://127.0.0.1:8000/info/applications_display/</loc>
+    </url>
+    <url>
+        <loc>http://127.0.0.1:8000/info/sitemap/</loc>
+    </url>
+</urlset>

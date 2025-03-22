@@ -6,12 +6,21 @@ import random, string
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.templatetags.static import static
+from django.http import HttpResponse
+from django.shortcuts import redirect
 
 def main_page(request, name="Аліно", color=""):
     return render(request, 'info/main_page.html', {'name': name, 'color': color})
 
 def couples(request):
     return render(request, 'info/couples.html')
+
+def sitemap(request):
+    return render(request, 'info/sitemap.html')
+
+def sitemap_xml(request):
+    return redirect(static('sitemap.xml'))
 
 @login_required(login_url='/accounts/login/')
 def forum(request):
@@ -30,28 +39,7 @@ def apply(request):
     return render(request, 'info/apply.html', {'regions': regions, 'settlements': settlements})
 
 
-def search(request):
-    query = request.GET.get('query')
 
-    search_results = ClubMember.objects.filter(
-        Q(user__last_name__icontains=query) | Q(user__first_name__icontains=query))
-
-    results = []
-    for cm in search_results:
-        results.append({
-            'is_accepted': cm.is_accepted,
-            'last_name': cm.user.last_name,
-            'first_name': cm.user.first_name,
-            'patronymic': cm.patronymic,
-            'birthday': cm.birthday,
-            'gender': cm.gender,
-            'region': cm.settlement.region,
-            'settlement': cm.settlement,
-            'email': cm.user.email,
-            'education': cm.education,
-        })
-
-    return JsonResponse(results, safe=False)
 def get_settlements(request):
     region_id = request.GET.get('region_id')
     settlements = Settlement.objects.filter(region__id=region_id).order_by('title').values('id', 'title')
@@ -72,8 +60,6 @@ def create_club_member(request):
         birthday = request.POST["birthday"]
         gender = request.POST["gender"]
         nationality = request.POST["nationality"]
-        region_id = request.POST['region']
-        region = Region.objects.get(id=region_id)
         settlement_id = request.POST['settlement']
         settlement = Settlement.objects.get(id=settlement_id)
         phone_number = request.POST["phone_number"]

@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div><a href="{% url 'couples' %}">Сімейні пари</a></div>
-            <div><a href="#">Розваги</a></div>
+<!--            <div><a href="#">Розваги</a></div>-->
             <div><a href="{% url 'forum' %}">Форум</a></div>
             <div><a href="{% url 'apply' %}">Подати заявку</a></div>
             <div><a href="{% url 'applications_display' %}">Усі заявки</a></div>
@@ -36,7 +36,7 @@
     </header>
     <main style="{% if color != '' %}background-color:{{ color }}{% endif %}">
         <article>
-            <h1>Привіт, {{ name }}. Це сторінка "Про клуб"</h1>
+            <h1>Це сторінка "Про клуб"</h1>
             <section>
                 <div class="slider">
                     <div class="content">
@@ -83,7 +83,8 @@
         </article>
     </main>
     <footer>
-        Аліна Швиденко, 2022
+        <a href="{% url 'sitemap' %}">Мапа сайту</a>
+        <p>Аліна Швиденко, 2022</p>
     </footer>
     <script src= "{% static 'js/slider.js' %}"></script>
 </body>

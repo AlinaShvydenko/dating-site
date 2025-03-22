@@ -3,42 +3,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Повідомлення</title>
+    <title>Мапа сайту</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <style>
-    /* CSS для футера */
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-        }
-
-        main {
-            flex-grow: 1;
-        }
-
-        footer {
-            padding: 10px;
-            text-align: center;
-        }
-
-        .password-box {
-            background-color: #ffffff;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px;
-            text-align: center;
-        }
-
-        .password {
-            font-size: 24px;
-            color: #333333;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -63,15 +29,22 @@
             <div><a href="{% url 'forum' %}">Форум</a></div>
             <div><a href="{% url 'apply' %}">Подати заявку</a></div>
             <div><a href="{% url 'applications_display' %}">Усі заявки</a></div>
+            {% if user.is_authenticated %}
+                <div><a href="{% url 'logout' %}">Вийти</a></div>
+            {% endif %}
         </nav>
     </header>
     <main>
-        <br>
-        <h1>Ваші дані прийняті та обробляються!</h1>
-        <br>
-        <div class="password-box">
-        <h2 class="password">Вам було присвоєно пароль: {{ password }}</h2>
-        </div>
+        <article>
+            <h1>Мапа сайту</h1>
+            <ul>
+              <li><a href="{% url 'main_page' %}">Про клуб </a></li>
+<!--              <li><a href="#">Розваги</a></li>-->
+              <li><a href="{% url 'forum' %}">Форум</a></li>
+              <li><a href="{% url 'apply' %}">Подати заявку</a></li>
+              <li><a href="{% url 'applications_display' %}">Усі заявки</a></li>
+            </ul>
+        </article>
     </main>
     <footer>
         <a href="{% url 'sitemap' %}">Мапа сайту</a>
